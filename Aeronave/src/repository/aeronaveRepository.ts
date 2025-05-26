@@ -6,7 +6,7 @@ export const aeronaveRepository = {
 
     saveAeronave: async(model: string,manufacturer: string,flightHours: string,serialNumber: number): Promise<any>=>{
         try{
-            const result = await prisma.Aircraft.create({
+            const result = await prisma.aircraft.create({
                 data:{
                    model:model,
                    manufacturer:manufacturer,
@@ -21,6 +21,12 @@ export const aeronaveRepository = {
         }
     },
     fetchAllAircrafts: async():Promise<any[]>=>{
-        return await prisma.Aircraft.findMany();
+        const result = await prisma.aircraft.findMany({
+          include: {
+            maintenances: true
+          }
+        });
+        return result
+        
     }
 }

@@ -6,10 +6,30 @@
 
 generator client {
   provider = "prisma-client-js"
-  output   = "../generated/prisma"
 }
 
 datasource db {
-  provider = "postgresql"
-  url      = env("DATABASE_URL")
+  provider = "mysql"
+  url      = "mysql://root:password@10.110.12.50:3307/pauloSomativa"
+}
+
+model Aircraft {
+  id           String       @id @default(cuid())
+  model        String
+  manufacturer String
+  flightHours  String
+  serialNumber Int          @unique
+
+  maintenances Maintenance[]
+}
+
+model Maintenance {
+  id            String   @id @default(cuid())
+  aircraftId    String
+  serviceType   String   // Ex: 'Preventiva' ou 'Corretiva'
+  description   String?  // detalhes da ordem de serviço
+  openedAt      DateTime
+  closedAt      DateTime?
+
+  aircraft Aircraft @relation(fields: [aircraftId], references: [id])
 }
