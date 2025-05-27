@@ -14,11 +14,11 @@ datasource db {
 }
 
 model Aircraft {
-  id           String       @id @default(cuid())
+  id           String        @id @default(cuid())
   model        String
   manufacturer String
   flightHours  String
-  serialNumber Int          @unique
+  serialNumber Int           @unique
 
   maintenances Maintenance[]
 }
@@ -31,5 +31,17 @@ model Maintenance {
   openedAt      DateTime
   closedAt      DateTime?
 
-  aircraft Aircraft @relation(fields: [aircraftId], references: [id])
+  aircraft Aircraft   @relation(fields: [aircraftId], references: [id])
+  components Component[] 
+}
+
+model Component {
+  id            String   @id @default(cuid())
+  name          String
+  partNumber    String   // Número de série ou código da peça
+  amount        Int
+  supplier      String
+  maintenanceId String
+
+  maintenance Maintenance @relation(fields: [maintenanceId], references: [id])
 }

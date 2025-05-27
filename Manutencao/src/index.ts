@@ -11,7 +11,7 @@ fastify.register(maintenanceRouter)
 
 async function start() {
   try {
-    await fastify.listen({ port: 3000 })
+    await fastify.listen({ port: 3002, host:'0.0.0.0' })
     console.log('🚀 HTTP rodando em http://localhost:3000')
 
   } catch (err) {
