@@ -1,0 +1,496 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SkyTech Aero Solutions</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&family=Montserrat:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <h2><i class="fas fa-plane"></i> <span>SkyTech Aero</span></h2>
+            </div>
+            <ul class="nav-menu">
+                <li class="nav-item">
+                    <a href="#" class="nav-link active" data-page="dashboard">
+                        <i class="fas fa-tachometer-alt"></i>
+                        <span>Dashboard</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="#" class="nav-link" data-page="aeronaves">
+                        <i class="fas fa-plane"></i>
+                        <span>Aeronaves</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="#" class="nav-link" data-page="manutencao">
+                        <i class="fas fa-tools"></i>
+                        <span>Manutenção</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="#" class="nav-link" data-page="pecas">
+                        <i class="fas fa-cog"></i>
+                        <span>Peças</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="#" class="nav-link" data-page="certificacao">
+                        <i class="fas fa-certificate"></i>
+                        <span>Certificação</span>
+                    </a>
+                </li>
+            </ul>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <!-- Dashboard Page -->
+            <div class="microservice-page active" id="dashboard-page">
+                <div class="header">
+                    <h1>Dashboard</h1>
+                    <div class="user-info">
+                        <div class="user-avatar">JS</div>
+                        <span>John Smith</span>
+                    </div>
+                </div>
+
+                <div class="dashboard-cards">
+                    <div class="card">
+                        <div class="card-header">
+                            <div class="card-title">Aeronaves Registradas</div>
+                            <div class="card-icon blue">
+                                <i class="fas fa-plane"></i>
+                            </div>
+                        </div>
+                        <div class="card-value" id="total-aircrafts">12</div>
+                        <div class="card-description">Total de aeronaves na frota</div>
+                    </div>
+                    <div class="card">
+                        <div class="card-header">
+                            <div class="card-title">Ordens de Manutenção</div>
+                            <div class="card-icon orange">
+                                <i class="fas fa-tools"></i>
+                            </div>
+                        </div>
+                        <div class="card-value" id="total-maintenance">8</div>
+                        <div class="card-description">5 preventivas, 3 corretivas</div>
+                    </div>
+                    <div class="card">
+                        <div class="card-header">
+                            <div class="card-title">Peças em Estoque</div>
+                            <div class="card-icon green">
+                                <i class="fas fa-cog"></i>
+                            </div>
+                        </div>
+                        <div class="card-value" id="total-parts">142</div>
+                        <div class="card-description">32 tipos diferentes</div>
+                    </div>
+                    <div class="card">
+                        <div class="card-header">
+                            <div class="card-title">Técnicos Certificados</div>
+                            <div class="card-icon red">
+                                <i class="fas fa-user-tie"></i>
+                            </div>
+                        </div>
+                        <div class="card-value" id="total-technicians">15</div>
+                        <div class="card-description">12 aptos, 3 em renovação</div>
+                    </div>
+                </div>
+
+                <div class="table-container">
+                    <h2>Últimas Ordens de Manutenção</h2>
+                    <table id="recent-maintenance">
+                        <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>Aeronave</th>
+                                <th>Tipo</th>
+                                <th>Data</th>
+                                <th>Status</th>
+                                <th>Técnico</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <!-- Filled by JavaScript -->
+                        </tbody>
+                    </table>
+                </div>
+
+                <div class="table-container">
+                    <h2>Aeronaves com Manutenção Pendente</h2>
+                    <table id="pending-aircrafts">
+                        <thead>
+                            <tr>
+                                <th>Modelo</th>
+                                <th>Fabricante</th>
+                                <th>Horas de Voo</th>
+                                <th>Última Manutenção</th>
+                                <th>Próxima Manutenção</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <!-- Filled by JavaScript -->
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!-- Aeronaves Page -->
+            <div class="microservice-page" id="aeronaves-page">
+                <div class="header">
+                    <h1>Gerenciamento de Aeronaves</h1>
+                    <div class="user-info">
+                        <div class="user-avatar">JS</div>
+                        <span>John Smith</span>
+                    </div>
+                </div>
+
+                <div class="form-container">
+                    <h2 class="form-title">Cadastrar Nova Aeronave</h2>
+                    <form id="aircraft-form">
+                        <div class="form-row">
+                            <div class="form-col">
+                                <div class="form-group">
+                                    <label for="aircraft-model" class="form-label">Modelo</label>
+                                    <input type="text" id="aircraft-model" class="form-control" required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="aircraft-manufacturer" class="form-label">Fabricante</label>
+                                    <input type="text" id="aircraft-manufacturer" class="form-control" required>
+                                </div>
+                            </div>
+                            <div class="form-col">
+                                <div class="form-group">
+                                    <label for="aircraft-serial" class="form-label">Número de Série</label>
+                                    <input type="text" id="aircraft-serial" class="form-control" required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="aircraft-hours" class="form-label">Horas de Voo</label>
+                                    <input type="number" id="aircraft-hours" class="form-control" required>
+                                </div>
+                            </div>
+                        </div>
+                        <button type="submit" class="btn btn-primary">Cadastrar Aeronave</button>
+                    </form>
+                </div>
+
+                <div class="table-container">
+                    <div class="card-header">
+                        <h2>Aeronaves Registradas</h2>
+                        <div class="form-group" style="margin: 0; width: 300px;">
+                            <input type="text" id="aircraft-search" class="form-control" placeholder="Pesquisar aeronaves...">
+                        </div>
+                    </div>
+                    <table id="aircrafts-table">
+                        <thead>
+                            <tr>
+                                <th>Modelo</th>
+                                <th>Fabricante</th>
+                                <th>Número de Série</th>
+                                <th>Horas de Voo</th>
+                                <th>Status</th>
+                                <th>Ações</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <!-- Filled by JavaScript -->
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!-- Manutenção Page -->
+            <div class="microservice-page" id="manutencao-page">
+                <div class="header">
+                    <h1>Gerenciamento de Manutenção</h1>
+                    <div class="user-info">
+                        <div class="user-avatar">JS</div>
+                        <span>John Smith</span>
+                    </div>
+                </div>
+
+                <div class="form-container">
+                    <h2 class="form-title">Abrir Nova Ordem de Serviço</h2>
+                    <form id="maintenance-form">
+                        <div class="form-row">
+                            <div class="form-col">
+                                <div class="form-group">
+                                    <label for="maintenance-aircraft" class="form-label">Aeronave</label>
+                                    <select id="maintenance-aircraft" class="form-control" required>
+                                        <option value="">Selecione uma aeronave</option>
+                                        <!-- Filled by JavaScript -->
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <label for="maintenance-type" class="form-label">Tipo de Manutenção</label>
+                                    <select id="maintenance-type" class="form-control" required>
+                                        <option value="">Selecione o tipo</option>
+                                        <option value="preventiva">Preventiva</option>
+                                        <option value="corretiva">Corretiva</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="form-col">
+                                <div class="form-group">
+                                    <label for="maintenance-date" class="form-label">Data</label>
+                                    <input type="date" id="maintenance-date" class="form-control" required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="maintenance-description" class="form-label">Descrição</label>
+                                    <input type="text" id="maintenance-description" class="form-control" required>
+                                </div>
+                            </div>
+                        </div>
+                        <button type="submit" class="btn btn-primary">Abrir Ordem</button>
+                    </form>
+                </div>
+
+                <div class="table-container">
+                    <div class="card-header">
+                        <h2>Ordens de Serviço</h2>
+                        <div class="form-group" style="margin: 0; width: 300px;">
+                            <input type="text" id="maintenance-search" class="form-control" placeholder="Pesquisar ordens...">
+                        </div>
+                    </div>
+                    <table id="maintenance-table">
+                        <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>Aeronave</th>
+                                <th>Tipo</th>
+                                <th>Data</th>
+                                <th>Descrição</th>
+                                <th>Status</th>
+                                <th>Ações</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <!-- Filled by JavaScript -->
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!-- Peças Page -->
+            <div class="microservice-page" id="pecas-page">
+                <div class="header">
+                    <h1>Gerenciamento de Peças</h1>
+                    <div class="user-info">
+                        <div class="user-avatar">JS</div>
+                        <span>John Smith</span>
+                    </div>
+                </div>
+
+                <div class="form-container">
+                    <h2 class="form-title">Cadastrar Nova Peça</h2>
+                    <form id="part-form">
+                        <div class="form-row">
+                            <div class="form-col">
+                                <div class="form-group">
+                                    <label for="part-name" class="form-label">Nome</label>
+                                    <input type="text" id="part-name" class="form-control" required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="part-code" class="form-label">Código</label>
+                                    <input type="text" id="part-code" class="form-control" required>
+                                </div>
+                            </div>
+                            <div class="form-col">
+                                <div class="form-group">
+                                    <label for="part-quantity" class="form-label">Quantidade</label>
+                                    <input type="number" id="part-quantity" class="form-control" required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="part-supplier" class="form-label">Fornecedor</label>
+                                    <input type="text" id="part-supplier" class="form-control" required>
+                                </div>
+                            </div>
+                        </div>
+                        <button type="submit" class="btn btn-primary">Cadastrar Peça</button>
+                    </form>
+                </div>
+
+                <div class="table-container">
+                    <div class="card-header">
+                        <h2>Peças em Estoque</h2>
+                        <div class="form-group" style="margin: 0; width: 300px;">
+                            <input type="text" id="part-search" class="form-control" placeholder="Pesquisar peças...">
+                        </div>
+                    </div>
+                    <table id="parts-table">
+                        <thead>
+                            <tr>
+                                <th>Código</th>
+                                <th>Nome</th>
+                                <th>Quantidade</th>
+                                <th>Fornecedor</th>
+                                <th>Último Uso</th>
+                                <th>Ações</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <!-- Filled by JavaScript -->
+                        </tbody>
+                    </table>
+                </div>
+
+                <div class="table-container">
+                    <h2>Histórico de Uso de Peças</h2>
+                    <table id="parts-history">
+                        <thead>
+                            <tr>
+                                <th>Peça</th>
+                                <th>Código</th>
+                                <th>Ordem de Serviço</th>
+                                <th>Aeronave</th>
+                                <th>Data</th>
+                                <th>Quantidade</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <!-- Filled by JavaScript -->
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!-- Certificação Page -->
+            <div class="microservice-page" id="certificacao-page">
+                <div class="header">
+                    <h1>Gerenciamento de Certificação</h1>
+                    <div class="user-info">
+                        <div class="user-avatar">JS</div>
+                        <span>John Smith</span>
+                    </div>
+                </div>
+
+                <div class="form-container">
+                    <h2 class="form-title">Registrar Novo Técnico</h2>
+                    <form id="technician-form">
+                        <div class="form-row">
+                            <div class="form-col">
+                                <div class="form-group">
+                                    <label for="technician-name" class="form-label">Nome Completo</label>
+                                    <input type="text" id="technician-name" class="form-control" required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="technician-id" class="form-label">ID de Certificação</label>
+                                    <input type="text" id="technician-id" class="form-control" required>
+                                </div>
+                            </div>
+                            <div class="form-col">
+                                <div class="form-group">
+                                    <label for="technician-license" class="form-label">Tipo de Licença</label>
+                                    <select id="technician-license" class="form-control" required>
+                                        <option value="">Selecione a licença</option>
+                                        <option value="A">Tipo A - Mecânica de Aeronaves</option>
+                                        <option value="B">Tipo B - Aviónica</option>
+                                        <option value="C">Tipo C - Motores</option>
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <label for="technician-expiry" class="form-label">Data de Expiração</label>
+                                    <input type="date" id="technician-expiry" class="form-control" required>
+                                </div>
+                            </div>
+                        </div>
+                        <button type="submit" class="btn btn-primary">Registrar Técnico</button>
+                    </form>
+                </div>
+
+                <div class="table-container">
+                    <div class="card-header">
+                        <h2>Técnicos Certificados</h2>
+                        <div class="form-group" style="margin: 0; width: 300px;">
+                            <input type="text" id="technician-search" class="form-control" placeholder="Pesquisar técnicos...">
+                        </div>
+                    </div>
+                    <table id="technicians-table">
+                        <thead>
+                            <tr>
+                                <th>Nome</th>
+                                <th>ID de Certificação</th>
+                                <th>Tipo de Licença</th>
+                                <th>Expiração</th>
+                                <th>Status ANAT</th>
+                                <th>Ações</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <!-- Filled by JavaScript -->
+                        </tbody>
+                    </table>
+                </div>
+
+                <div class="table-container">
+                    <h2>Histórico de Inspeções</h2>
+                    <table id="inspections-table">
+                        <thead>
+                            <tr>
+                                <th>Data</th>
+                                <th>Técnico</th>
+                                <th>Aeronave</th>
+                                <th>Tipo</th>
+                                <th>Resultado</th>
+                                <th>Horas de Voo</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <!-- Filled by JavaScript -->
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <!-- Modal for Maintenance Details -->
+    <div class="modal" id="maintenance-modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 class="modal-title">Detalhes da Ordem de Serviço</h3>
+                <button class="close-modal">&times;</button>
+            </div>
+            <div id="maintenance-details">
+                <!-- Filled by JavaScript -->
+            </div>
+            <div class="form-group">
+                <label for="maintenance-technician" class="form-label">Atribuir Técnico</label>
+                <select id="maintenance-technician" class="form-control">
+                    <option value="">Selecione um técnico</option>
+                    <!-- Filled by JavaScript -->
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="maintenance-parts" class="form-label">Peças Utilizadas</label>
+                <select id="maintenance-parts" class="form-control" multiple>
+                    <!-- Filled by JavaScript -->
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="maintenance-notes" class="form-label">Notas</label>
+                <textarea id="maintenance-notes" class="form-control" rows="3"></textarea>
+            </div>
+            <div style="display: flex; justify-content: flex-end; gap: 10px; margin-top: 20px;">
+                <button class="btn btn-danger" id="cancel-maintenance">Cancelar</button>
+                <button class="btn btn-success" id="complete-maintenance">Concluir Manutenção</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Notification -->
+    <div class="notification" id="notification">
+        <i class="fas fa-check-circle"></i>
+        <span id="notification-message">Operação realizada com sucesso!</span>
+    </div>
+
+    <script src="main.js"></script>
+</body>
+</html>

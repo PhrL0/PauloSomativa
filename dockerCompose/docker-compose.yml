@@ -1,0 +1,22 @@
+services:
+  db:
+    image: mysql:5.7
+    environment:
+      MYSQL_ROOT_PASSWORD: password
+      MYSQL_DATABASE: pauloSomativa
+      MYSQL_ROOT_HOST: '%'
+    command: --bind-address=0.0.0.0  
+    ports:
+      - "3307:3306"  
+    volumes:
+      - db_data:/var/lib/mysql
+    networks:
+      - sis01
+    restart: unless-stopped
+
+volumes:
+  db_data:
+
+networks:
+  sis01:
+    driver: bridge
